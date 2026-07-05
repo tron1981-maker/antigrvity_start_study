@@ -86,16 +86,12 @@
     }
 
     h1 {
-      font-size: clamp(3rem, 7vw, 5rem);
+      font-size: 40px;
       font-weight: 700;
-      background: linear-gradient(90deg, #69f0ae, #00e676, #b9f6ca);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #ffffff;
       letter-spacing: -0.02em;
       line-height: 1.2;
-      text-shadow: none;
-      filter: drop-shadow(0 0 18px rgba(0, 230, 118, 0.5));
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
     }
 
     .sub {
@@ -105,6 +101,56 @@
       color: rgba(255, 255, 255, 0.45);
       letter-spacing: 0.08em;
     }
+
+    .next-btn {
+      margin-top: 32px;
+      padding: 14px 28px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #061a0e;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: 'Noto Sans KR', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    /* 노란색 버튼 */
+    .next-btn.yellow {
+      background: linear-gradient(135deg, #ffd600, #ffeb3b);
+      box-shadow: 0 10px 20px rgba(255, 235, 59, 0.2), 0 0 15px rgba(255, 235, 59, 0.3);
+    }
+    .next-btn.yellow:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, #ffea00, #ffee58);
+      box-shadow: 0 15px 25px rgba(255, 235, 59, 0.3), 0 0 25px rgba(255, 235, 59, 0.5);
+    }
+
+    /* 주황색 버튼 */
+    .next-btn.orange {
+      background: linear-gradient(135deg, #ff9100, #ffb74d);
+      box-shadow: 0 10px 20px rgba(255, 145, 0, 0.2), 0 0 15px rgba(255, 145, 0, 0.3);
+    }
+    .next-btn.orange:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, #ffab40, #ffd180);
+      box-shadow: 0 15px 25px rgba(255, 145, 0, 0.3), 0 0 25px rgba(255, 145, 0, 0.5);
+    }
+
+    /* 초록색 버튼 */
+    .next-btn.green {
+      background: linear-gradient(135deg, #00c853, #69f0ae);
+      box-shadow: 0 10px 20px rgba(0, 200, 83, 0.2), 0 0 15px rgba(0, 200, 83, 0.3);
+    }
+    .next-btn.green:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, #00e676, #b9f6ca);
+      box-shadow: 0 15px 25px rgba(0, 200, 83, 0.3), 0 0 25px rgba(0, 200, 83, 0.5);
+    }
+
+    .next-btn:active {
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
@@ -112,6 +158,40 @@
     <span class="icon">💡</span>
     <h1>오늘도 힘내세요!</h1>
     <p class="sub">Cheer up today!</p>
+    <button class="next-btn yellow">다음 문장보기</button>
   </div>
+
+  <script>
+    const sentences = [
+      { ko: "오늘도 힘내세요!", en: "Cheer up today!" },
+      { ko: "오늘도 해냈어요!", en: "You did it today!" },
+      { ko: "조금씩 나아지고 있어요.", en: "Getting better day by day!" },
+      { ko: "이대로 계속 가봅시다.", en: "Let's keep going like this!" }
+    ];
+
+    let currentIndex = 0;
+    const h1 = document.querySelector('h1');
+    const sub = document.querySelector('.sub');
+    const btn = document.querySelector('.next-btn');
+
+    function updateButtonColor(sentenceKo) {
+      btn.classList.remove('yellow', 'orange', 'green');
+      if (sentenceKo.includes('오늘도 해냈어요') || sentenceKo.includes('오늘도 힘내세요')) {
+        btn.classList.add('yellow');
+      } else if (sentenceKo.includes('조금씩 나아지고 있어요')) {
+        btn.classList.add('orange');
+      } else if (sentenceKo.includes('이대로 계속 가봅시다')) {
+        btn.classList.add('green');
+      }
+    }
+
+    btn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % sentences.length;
+      const current = sentences[currentIndex];
+      h1.textContent = current.ko;
+      sub.textContent = current.en;
+      updateButtonColor(current.ko);
+    });
+  </script>
 </body>
 </html>
