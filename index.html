@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>내 첫번째 아이디어</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap" rel="stylesheet" />
+  <title>나의 첫 서비스</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
   <style>
     * {
       margin: 0;
@@ -15,50 +15,56 @@
     body {
       min-height: 100vh;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #061a0e, #0a2e18, #0d3b22);
-      font-family: 'Noto Sans KR', sans-serif;
-      overflow: hidden;
+      flex-direction: column;
+      background: linear-gradient(135deg, #021a0e, #062c16, #0c3e21);
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+      color: #ffffff;
+      overflow-x: hidden;
       position: relative;
     }
 
-    /* 헤더 상단 바 스타일 */
+    /* 헤더 스타일: 어두운 보조 색상 배경, 연한 녹색 포인트 */
     .header {
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 24px 60px;
+      padding: 20px 60px;
       z-index: 10;
-      background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      background: linear-gradient(135deg, #0b2d1c, #062c16);
+      border-bottom: 1px solid rgba(74, 222, 128, 0.15);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
 
-    .logo {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #ffffff;
-      letter-spacing: 0.05em;
+    .header h1 {
+      font-size: 1.5rem;
+      font-weight: 700; /* 제목 굵게 */
+      color: #4ade80;
+      letter-spacing: -0.03em;
+      text-shadow: 0 2px 10px rgba(74, 222, 128, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 8px; /* 아이콘과 텍스트 간격 */
+    }
+
+    .header-icon {
+      width: 22px;
+      height: 22px;
+      fill: currentColor; /* 제목 색상(#4ade80)과 동일하게 동적 동기화 */
     }
 
     .nav-links {
       display: flex;
-      gap: 40px; /* 각 메뉴 사이의 적당한 간격 */
+      gap: 32px;
       list-style: none;
     }
 
     .nav-links a {
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(255, 255, 255, 0.85);
       text-decoration: none;
       font-size: 1rem;
-      font-weight: 300;
-      letter-spacing: 0.05em;
+      font-weight: 500; /* 네비게이션 미디엄 굵기 */
+      letter-spacing: 0.02em;
       transition: all 0.3s ease;
       position: relative;
     }
@@ -70,7 +76,7 @@
       left: 0;
       width: 0;
       height: 2px;
-      background: #00c853;
+      background: #4ade80;
       transition: width 0.3s ease;
     }
 
@@ -83,13 +89,48 @@
       width: 100%;
     }
 
-    @media (max-width: 768px) {
-      .header {
-        padding: 20px 30px;
-      }
-      .nav-links {
-        gap: 24px;
-      }
+    /* 본문 스타일: 세로 섹션 배치 */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 80px;
+      padding: 60px 20px;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700; /* 제목 굵게 */
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      text-align: center;
+      position: relative;
+      padding-bottom: 12px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #4ade80, #10b981);
+      border-radius: 2px;
     }
 
     /* 배경 빛나는 원 */
@@ -99,43 +140,47 @@
       position: fixed;
       border-radius: 50%;
       filter: blur(80px);
-      opacity: 0.25;
+      opacity: 0.15;
       animation: pulse 6s ease-in-out infinite alternate;
+      z-index: 0;
+      pointer-events: none;
     }
 
     body::before {
       width: 500px;
       height: 500px;
-      background: #00c853;
-      top: -150px;
+      background: #4ade80;
+      top: 10%;
       left: -150px;
     }
 
     body::after {
       width: 400px;
       height: 400px;
-      background: #76ff03;
-      bottom: -100px;
+      background: #10b981;
+      bottom: 10%;
       right: -100px;
       animation-delay: 3s;
     }
 
     @keyframes pulse {
-      from { transform: scale(1); opacity: 0.2; }
-      to   { transform: scale(1.3); opacity: 0.35; }
+      from { transform: scale(1); opacity: 0.12; }
+      to   { transform: scale(1.3); opacity: 0.22; }
     }
 
     .card {
       position: relative;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.02);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(72, 255, 130, 0.25);
+      border: 1px solid rgba(74, 222, 128, 0.12);
       border-radius: 24px;
       padding: 64px 80px;
       text-align: center;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 200, 83, 0.15);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(74, 222, 128, 0.08);
       animation: fadeInUp 0.9s ease both;
+      max-width: 600px;
+      width: 100%;
     }
 
     @keyframes fadeInUp {
@@ -155,90 +200,220 @@
       50%       { transform: translateY(-8px); }
     }
 
-    h1 {
-      font-size: 40px;
-      font-weight: 700;
+    .card-sentence {
+      font-size: 2.2rem;
+      font-weight: 700; /* 제목 굵게 */
       color: #ffffff;
       letter-spacing: -0.02em;
-      line-height: 1.2;
-      text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+      line-height: 1.3;
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
     }
 
     .sub {
       margin-top: 16px;
       font-size: 0.95rem;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.45);
+      font-weight: 400; /* 본문 일반 굵기 */
+      color: rgba(255, 255, 255, 0.55);
       letter-spacing: 0.08em;
     }
 
+    /* 버튼 스타일 (기본: 주 색상인 연한 녹색, 호버: 보조 색상인 어두운 계열) */
     .next-btn {
       margin-top: 32px;
       padding: 14px 28px;
       font-size: 1rem;
       font-weight: 700;
-      color: #061a0e;
-      border: none;
+      color: #022c22;
+      background: #4ade80;
+      border: 2px solid #4ade80;
       border-radius: 50px;
       cursor: pointer;
-      font-family: 'Noto Sans KR', sans-serif;
+      font-family: inherit;
       transition: all 0.3s ease;
+      box-shadow: 0 10px 20px rgba(74, 222, 128, 0.15), 0 0 15px rgba(74, 222, 128, 0.2);
     }
 
-    /* 노란색 버튼 */
-    .next-btn.yellow {
-      background: linear-gradient(135deg, #ffd600, #ffeb3b);
-      box-shadow: 0 10px 20px rgba(255, 235, 59, 0.2), 0 0 15px rgba(255, 235, 59, 0.3);
-    }
-    .next-btn.yellow:hover {
-      transform: translateY(-2px);
-      background: linear-gradient(135deg, #ffea00, #ffee58);
-      box-shadow: 0 15px 25px rgba(255, 235, 59, 0.3), 0 0 25px rgba(255, 235, 59, 0.5);
-    }
-
-    /* 주황색 버튼 */
-    .next-btn.orange {
-      background: linear-gradient(135deg, #ff9100, #ffb74d);
-      box-shadow: 0 10px 20px rgba(255, 145, 0, 0.2), 0 0 15px rgba(255, 145, 0, 0.3);
-    }
-    .next-btn.orange:hover {
-      transform: translateY(-2px);
-      background: linear-gradient(135deg, #ffab40, #ffd180);
-      box-shadow: 0 15px 25px rgba(255, 145, 0, 0.3), 0 0 25px rgba(255, 145, 0, 0.5);
-    }
-
-    /* 초록색 버튼 */
-    .next-btn.green {
-      background: linear-gradient(135deg, #00c853, #69f0ae);
-      box-shadow: 0 10px 20px rgba(0, 200, 83, 0.2), 0 0 15px rgba(0, 200, 83, 0.3);
-    }
-    .next-btn.green:hover {
-      transform: translateY(-2px);
-      background: linear-gradient(135deg, #00e676, #b9f6ca);
-      box-shadow: 0 15px 25px rgba(0, 200, 83, 0.3), 0 0 25px rgba(0, 200, 83, 0.5);
+    .next-btn:hover {
+      transform: scale(1.06); /* 살짝 커지는 효과 추가 */
+      background: #e8ffeb; /* 마우스를 올리면 매우 밝은 연녹빛 화이트로 변경 */
+      color: #022c22; /* 대비 확보를 위한 어두운 글씨색 */
+      border-color: #e8ffeb;
+      box-shadow: 0 15px 30px rgba(74, 222, 128, 0.35), 0 0 25px rgba(232, 255, 235, 0.6);
     }
 
     .next-btn:active {
       transform: translateY(0);
     }
+
+    /* 사용자 후기 스타일 */
+    .reviews-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .review-card {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(74, 222, 128, 0.3);
+      box-shadow: 0 20px 45px rgba(74, 222, 128, 0.12);
+    }
+
+    .review-profile {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .profile-img {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #4ade80;
+    }
+
+    .profile-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .profile-name {
+      font-size: 1.1rem;
+      font-weight: 700; /* 제목/이름 굵게 */
+      color: #ffffff;
+    }
+
+    .profile-role {
+      font-size: 0.85rem;
+      font-weight: 400; /* 본문 일반 굵기 */
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 2px;
+    }
+
+    .review-text {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 400; /* 본문 일반 굵기 */
+      font-style: italic;
+    }
+
+    /* 푸터 스타일: 어두운 보조 색상 배경 */
+    .footer {
+      width: 100%;
+      padding: 24px;
+      background: #0b2d1c;
+      border-top: 1px solid rgba(74, 222, 128, 0.15);
+      text-align: center;
+      z-index: 10;
+    }
+
+    .footer-text {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.45);
+      font-weight: 400; /* 본문 일반 굵기 */
+      letter-spacing: 0.05em;
+    }
+
+    /* 미디어 쿼리 */
+    @media (max-width: 768px) {
+      .header {
+        padding: 20px 30px;
+      }
+      .nav-links {
+        gap: 20px;
+      }
+      .reviews-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .card {
+        padding: 40px 30px;
+      }
+      .card-sentence {
+        font-size: 1.8rem;
+      }
+    }
   </style>
 </head>
 <body>
   <header class="header">
-    <div class="logo">💡 Idea</div>
-    <ul class="nav-links">
-      <li><a href="#intro">소개</a></li>
-      <li><a href="#features">기능</a></li>
-      <li><a href="#contact">문의</a></li>
-    </ul>
+    <h1>
+      <svg class="header-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+      </svg>
+      나의 첫 서비스
+    </h1>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#intro">소개</a></li>
+        <li><a href="#features">기능</a></li>
+        <li><a href="#contact">문의</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <div class="card">
-    <span class="icon">💡</span>
-    <h1>오늘도 힘내세요!</h1>
-    <p class="sub">Cheer up today!</p>
-    <button class="next-btn yellow">다음 문장보기</button>
-  </div>
+  <main class="main-content">
+    <!-- 섹션 1: 핵심 기능 소개 -->
+    <section class="section">
+      <h2 class="section-title">핵심 기능 소개</h2>
+      <div class="card">
+        <span class="icon">💡</span>
+        <h2 class="card-sentence">오늘도 힘내세요!</h2>
+        <p class="sub">Cheer up today!</p>
+        <button id="next-sentence-btn" class="next-btn">다음 문장보기</button>
+      </div>
+    </section>
+
+    <!-- 섹션 2: 사용자 후기 -->
+    <section class="section">
+      <h2 class="section-title">사용자 후기</h2>
+      <div class="reviews-container">
+        <!-- 후기 1 -->
+        <div class="review-card">
+          <div class="review-profile">
+            <img src="./user_profile_female.png" alt="김민지 UX 디자이너 프로필" class="profile-img" />
+            <div class="profile-info">
+              <span class="profile-name">김민지</span>
+              <span class="profile-role">UX 디자이너</span>
+            </div>
+          </div>
+          <p class="review-text">"매일 아침 들어와서 긍정적인 문장을 보는 게 일상이 되었어요. 마음이 편안해지고 하루를 즐겁게 시작할 수 있게 도와줍니다!"</p>
+        </div>
+        <!-- 후기 2 -->
+        <div class="review-card">
+          <div class="review-profile">
+            <img src="./user_profile_male.png" alt="이준우 소프트웨어 엔지니어 프로필" class="profile-img" />
+            <div class="profile-info">
+              <span class="profile-name">이준우</span>
+              <span class="profile-role">소프트웨어 엔지니어</span>
+            </div>
+          </div>
+          <p class="review-text">"디자인이 너무 깔끔하고 직관적입니다. 매번 바뀌는 버튼 색상과 부드러운 애니메이션 덕분에 지루하지 않고 매일 찾게 되네요."</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-text">2026 My Service</p>
+  </footer>
 
   <script>
     const sentences = [
@@ -249,27 +424,16 @@
     ];
 
     let currentIndex = 0;
-    const h1 = document.querySelector('h1');
-    const sub = document.querySelector('.sub');
-    const btn = document.querySelector('.next-btn');
-
-    function updateButtonColor(sentenceKo) {
-      btn.classList.remove('yellow', 'orange', 'green');
-      if (sentenceKo.includes('오늘도 해냈어요') || sentenceKo.includes('오늘도 힘내세요')) {
-        btn.classList.add('yellow');
-      } else if (sentenceKo.includes('조금씩 나아지고 있어요')) {
-        btn.classList.add('orange');
-      } else if (sentenceKo.includes('이대로 계속 가봅시다')) {
-        btn.classList.add('green');
-      }
-    }
+    const sentenceEl = document.querySelector('.card-sentence');
+    const subEl = document.querySelector('.sub');
+    const btn = document.getElementById('next-sentence-btn');
 
     btn.addEventListener('click', () => {
+      currentIndex = (currentIndex % sentences.length);
       currentIndex = (currentIndex + 1) % sentences.length;
       const current = sentences[currentIndex];
-      h1.textContent = current.ko;
-      sub.textContent = current.en;
-      updateButtonColor(current.ko);
+      sentenceEl.textContent = current.ko;
+      subEl.textContent = current.en;
     });
   </script>
 </body>
