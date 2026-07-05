@@ -20,6 +20,76 @@
       background: linear-gradient(135deg, #061a0e, #0a2e18, #0d3b22);
       font-family: 'Noto Sans KR', sans-serif;
       overflow: hidden;
+      position: relative;
+    }
+
+    /* 헤더 상단 바 스타일 */
+    .header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 60px;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px; /* 각 메뉴 사이의 적당한 간격 */
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #00c853;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 20px 30px;
+      }
+      .nav-links {
+        gap: 24px;
+      }
     }
 
     /* 배경 빛나는 원 */
@@ -154,6 +224,15 @@
   </style>
 </head>
 <body>
+  <header class="header">
+    <div class="logo">💡 Idea</div>
+    <ul class="nav-links">
+      <li><a href="#intro">소개</a></li>
+      <li><a href="#features">기능</a></li>
+      <li><a href="#contact">문의</a></li>
+    </ul>
+  </header>
+
   <div class="card">
     <span class="icon">💡</span>
     <h1>오늘도 힘내세요!</h1>
